@@ -1,1 +1,1 @@
-window.BONYAN_GAS_URL = localStorage.getItem('bonyan-gas-url') || '';
+(()=>{const defaultUrl='https://script.google.com/macros/s/AKfycbwNJKFjsHa5XQXzB0_r-cOOqC0LkyKbz1awQCEFX9N87Y3Kf8t3oSDYXjWx1x9iQtXMEA/exec';try{if(localStorage.getItem('bonyan-gas-config-version')!=='1'){localStorage.setItem('bonyan-gas-url',defaultUrl);localStorage.setItem('bonyan-gas-config-version','1')}window.BONYAN_GAS_URL=localStorage.getItem('bonyan-gas-url')||defaultUrl}catch{window.BONYAN_GAS_URL=defaultUrl}})();
