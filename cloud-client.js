@@ -37,7 +37,7 @@ function call(action,data={}){
 }
 let seq=0;
 function saveDataset(key,value){if(!configured)return Promise.resolve({ok:true,local:true});const token=localStorage.getItem('bonyan-api-session');if(!token)return Promise.reject(Error('انتهت الجلسة؛ سجّل الدخول مجدداً'));const prior=saveQueues.get(key),run=()=>call(key==='bonyan-users'?'saveUsers':'saveData',{token,key,value}),task=prior?prior.catch(()=>{}).then(run):run();let tracked;tracked=task.finally(()=>{if(saveQueues.get(key)===tracked)saveQueues.delete(key)});saveQueues.set(key,tracked);return tracked}
-function flush(){return Promise.all([...saveQueues.values()])}
+async function flush(){while(saveQueues.size)await Promise.all([...saveQueues.values()])}
 async function syncAll(token){const response=await call('loadAll',{token});if(!response||!response.ok)throw Error(response?.error||'تعذر تحميل بيانات المؤسسة');keys.forEach(k=>localStorage.removeItem(k));keys.forEach(k=>localStorage.setItem(k,JSON.stringify(Object.prototype.hasOwnProperty.call(response.data||{},k)?response.data[k]:(k==='bonyan-company'?{}:[]))));localStorage.setItem('bonyan-users',JSON.stringify(response.users||[]));return response}
 window.BonyanCloud={configured,gasUrl,keys,ready,call,saveDataset,flush,hasPendingWrites:()=>saveQueues.size>0,syncAll,setUrl(url){const v=String(url||'').trim();if(!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec\/?$/.test(v))throw Error('أدخل رابط Web App الذي ينتهي بـ /exec');localStorage.setItem('bonyan-gas-url',v);location.reload()}};
 })();
