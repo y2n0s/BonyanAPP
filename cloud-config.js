@@ -1,1 +1,1 @@
-(()=>{const fixedUrl='https://script.google.com/macros/s/AKfycbwNJKFjsHa5XQXzB0_r-cOOqC0LkyKbz1awQCEFX9N87Y3Kf8t3oSDYXjWx1x9iQtXMEA/exec';try{localStorage.setItem('bonyan-gas-url',fixedUrl);localStorage.setItem('bonyan-gas-config-version','4')}catch{}window.BONYAN_GAS_URL=fixedUrl})();
+(()=>{const fixedUrl='https://script.google.com/macros/s/AKfycbwNJKFjsHa5XQXzB0_r-cOOqC0LkyKbz1awQCEFX9N87Y3Kf8t3oSDYXjWx1x9iQtXMEA/exec';try{localStorage.setItem('bonyan-gas-url',fixedUrl);localStorage.setItem('bonyan-gas-config-version','12')}catch{}window.BONYAN_GAS_URL=fixedUrl})();
